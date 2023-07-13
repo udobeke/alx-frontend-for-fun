@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-A script that codes markdown to HTML
+A script that converts Markdown to HTML
 '''
 import sys
 import os
@@ -26,6 +26,8 @@ if __name__ == '__main__':
     with open(input_file, encoding='utf-8') as file_1:
         html_content = []
         md_content = [line[:-1] for line in file_1.readlines()]
+        in_list = False  # Flag to track if currently inside a list
+
         for line in md_content:
             heading = re.split(r'#{1,6} ', line)
             if len(heading) > 1:
@@ -36,8 +38,21 @@ if __name__ == '__main__':
                 html_content.append(
                     f'<h{h_level}>{heading[1]}</h{h_level}>\n'
                 )
+                in_list = False  # Reset list flag when a heading is encountered
+            elif line.startswith('- '):
+                # Start of an unordered list
+                if not in_list:
+                    html_content.append('<ul>\n')
+                    in_list = True
+                # Remove the '-' and space, and wrap the line in <li> tags
+                html_content.append(f'<li>{line[2:]}</li>\n')
             else:
+                # Regular text line
                 html_content.append(line)
+
+        # Close the unordered list if the last line was part of a list
+        if in_list:
+            html_content.append('</ul>\n')
 
     with open(output_file, 'w', encoding='utf-8') as file_2:
         file_2.writelines(html_content)
