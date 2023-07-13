@@ -39,18 +39,25 @@ if __name__ == '__main__':
                     f'<h{h_level}>{heading[1]}</h{h_level}>\n'
                 )
                 in_list = False  # Reset list flag when a heading is encountered
-            elif line.startswith('- '):
+            elif line.startswith('* '):
                 # Start of an unordered list
                 if not in_list:
                     html_content.append('<ul>\n')
                     in_list = True
-                # Remove the '-' and space, and wrap the line in <li> tags
+                # Remove the '*' and space, and wrap the line in <li> tags
                 html_content.append(f'<li>{line[2:]}</li>\n')
+            elif line.startswith('1. '):
+                # Start of an ordered list
+                if not in_list:
+                    html_content.append('<ol>\n')
+                    in_list = True
+                # Remove the '1.' and space, and wrap the line in <li> tags
+                html_content.append(f'<li>{line[3:]}</li>\n')
             else:
                 # Regular text line
                 html_content.append(line)
 
-        # Close the unordered list if the last line was part of a list
+        # Close the list if the last line was part of a list
         if in_list:
             html_content.append('</ul>\n')
 
