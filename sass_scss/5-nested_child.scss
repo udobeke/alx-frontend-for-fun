@@ -1,0 +1,9 @@
+/* a Sass file that assigns text colo */
+
+body {
+  color: #3D3D3D;
+
+  > .red {
+    color: #FF0000;
+  }
+}
