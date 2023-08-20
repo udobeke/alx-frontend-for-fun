@@ -1,0 +1,9 @@
+/* a Sass file that loop photos */
+
+@import 'variables';
+
+@each $name in $list-names {
+  .#{lowercase($name)} {
+    background-image: url('images/#{lowercase($name)}.jpg');
+  }
+}
