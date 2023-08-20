@@ -1,9 +1,5 @@
-/* a Sass file that loop photos */
+// Columns and operators
 
-@import 'variables';
-
-@each $name in $list-names {
-  .#{lowercase($name)} {
-    background-image: url('images/#{lowercase($name)}.jpg');
-  }
+@for $i from 1 through 4 {
+    .col-#{$i} { width: 100%/4 * $i; }
 }
