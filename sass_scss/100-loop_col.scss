@@ -1,4 +1,4 @@
-// Columns and operators
+/* a sass file that creates Columns and operators */
 
 @for $i from 1 through 4 {
     .col-#{$i} { width: 100%/4 * $i; }
