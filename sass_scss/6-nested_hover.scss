@@ -4,8 +4,8 @@ change button color on hover*/
 $color-0: #FF0000;
 $color-1: #00FF00;
 button {
-  color: $color-0;
+  color: $color-1;
   &:hover {
-    color: $color-1;
+    color: $color-0;
   }
 }
