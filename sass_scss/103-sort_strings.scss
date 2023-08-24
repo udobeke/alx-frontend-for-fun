@@ -1,5 +1,8 @@
 /* a Sass file that sorts the variable */
 
-@import "103-sort_list.scss";
+@import '103-sort_list';
 
-@debug $sorted_list;
+// Sort the list
+$list_sorted: sort($list_to_sort);
+
+@debug $list_to_sort;
